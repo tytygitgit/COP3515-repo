@@ -14,10 +14,10 @@ int main() {
   printf("Enter Current GPA: ");
   scanf("%f", &currentGPA);
 
-  printf("-------------------------------------\n");
+  printf("\n-------------------------------------\n");
   printf("Student Information Management System\n");
   printf("Version 1.0\n");
-  printf("Programmer: Your Name Here\n");
+  printf("Programmer: Tyler Cabrera\n");
   printf("Welcome to SIMS\n");
   printf("-------------------------------------\n");
 
