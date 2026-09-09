@@ -11,7 +11,7 @@ int main() {
     printf("Please enter a valid age (1-100): ");
   }
 
-  printf("Enter day type (Weekday or Weekend): ");
+  printf("Enter day type (W = Weekday, E = Weekend): ");
   while (scanf(" %c", &dayType) != 1 || (dayType != 'W' && dayType != 'w' &&
                                          dayType != 'E' && dayType != 'e')) {
     while (getchar() != '\n')
