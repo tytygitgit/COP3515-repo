@@ -63,7 +63,7 @@ int main() {
   printf("Student Summary\n\n");
   printf("Student ID: %d\n", studentID);
   printf("Student Name: %s\n", studentName);
-  printf("Current GPA: %.0f\n\n", currentGPA);
+  printf("Current GPA: %.2f\n\n", currentGPA);
 
   printf("-------------------------------------\n");
   printf("Course Grades \n\n");
