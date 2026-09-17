@@ -16,9 +16,16 @@ int main() {
   scanf(" %49[^\n]", studentName);
 
   printf("Enter Current GPA: ");
-  scanf("%f", &currentGPA);
+  while (scanf("%f", &currentGPA) != 1 || currentGPA < 0 || currentGPA > 4.0) {
+    while (getchar() != '\n')
+      ; // clear the input buffer
+    printf("\nERROR\n");
+    printf("Invalid GPA entered.\n");
+    printf("GPA must be between 0.00 and 4.00.\n\n");
+    printf("Enter Current GPA: ");
+  }
 
-  printf("Enter Course 1 Grade: ");
+  printf("\nEnter Course 1 Grade: ");
   scanf("%d", &courseGrades[0]);
   printf("Enter Course 2 Grade: ");
   scanf("%d", &courseGrades[1]);
@@ -54,7 +61,7 @@ int main() {
 
   printf("\n-------------------------------------\n");
   printf("Student Information Management System\n");
-  printf("Version 2.0\n");
+  printf("Version 3.0\n");
   printf("Programmer: Tyler Cabrera\n");
   printf("Welcome to SIMS\n");
   printf("-------------------------------------\n");
@@ -63,7 +70,17 @@ int main() {
   printf("Student Summary\n\n");
   printf("Student ID: %d\n", studentID);
   printf("Student Name: %s\n", studentName);
-  printf("Current GPA: %.2f\n\n", currentGPA);
+  printf("Current GPA: %.2f\n", currentGPA);
+
+  if (currentGPA >= 3.50) {
+    printf("Academic Standing: Honors\n\n");
+  } else if (currentGPA >= 2.00) {
+    printf("Academic Standing: Good Standing\n\n");
+  } else if (currentGPA >= 1.00) {
+    printf("Academic Standing: Academic Probation\n\n");
+  } else {
+    printf("Academic Standing: Academic Suspension\n\n");
+  }
 
   printf("-------------------------------------\n");
   printf("Course Grades \n\n");
