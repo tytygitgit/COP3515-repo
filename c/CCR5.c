@@ -41,20 +41,17 @@ int main() {
     totalRevenue += parkingCharge;
     vehicleCount++;
 
-    if (vehicleCount >= 3) {
+    printf("More vehicles? ");
+    fgets(response, sizeof(response), stdin);
 
-      printf("More vehicles? ");
+    while (response[0] != 'Y' && response[0] != 'N' && response[0] != 'y' &&
+           response[0] != 'n') {
+
+      printf("Please enter a valid response (Y/N): ");
       fgets(response, sizeof(response), stdin);
-
-      while (response[0] != 'Y' && response[0] != 'N' && response[0] != 'y' &&
-             response[0] != 'n') {
-
-        printf("Please enter a valid response (Y/N): ");
-        fgets(response, sizeof(response), stdin);
-      }
-
-      moreVehicles = response[0];
     }
+
+    moreVehicles = response[0];
 
     printf("\n");
   }
