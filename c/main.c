@@ -147,7 +147,7 @@ int main() {
 
   fclose(studentFile);
 
-  printf("\nFile successfully loaded.\n\n");
+  printf("File successfully loaded.\n\n");
 
   printf("Recovered Student Record\n");
   printf("-------------------------------------\n");
@@ -170,12 +170,6 @@ int main() {
   printf("\nAverage Grade: %.2f\n", averageGrade);
   printf("Highest Grade: %d\n", highestGrade);
   printf("Lowest Grade: %d\n", lowestGrade);
-
-  for (int i = 0; i < 5; i++) {
-    printf("%d ", savedGrades[i]);
-  }
-
-  printf("\n");
 
   return 0;
 }
