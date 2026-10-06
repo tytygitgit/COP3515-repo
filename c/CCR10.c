@@ -23,7 +23,6 @@ int main() {
   int member2LetterCount;
 
   int comparisonResult;
-  char buffer[2];
 
   printf("Member 1\n");
 
@@ -57,8 +56,21 @@ int main() {
 
   trimSpaces(member2LastName);
 
-  buildFullName(member1FirstName, member1LastName, member1FullName);
-  buildFullName(member2FirstName, member2LastName, member2FullName);
+  if (strlen(member1FirstName) == 0 && strlen(member1LastName) == 0) {
+
+    strcpy(member1FullName, "");
+  } else {
+
+    buildFullName(member1FirstName, member1LastName, member1FullName);
+  }
+
+  if (strlen(member2FirstName) == 0 && strlen(member2LastName) == 0) {
+
+    strcpy(member2FullName, "");
+  } else {
+
+    buildFullName(member2FirstName, member2LastName, member2FullName);
+  }
 
   calculateLetterCount(member1FullName, &member1LetterCount);
   calculateLetterCount(member2FullName, &member2LetterCount);
@@ -86,7 +98,16 @@ int main() {
 
   printf("Alphabetical Order\n\n");
 
-  if (strcmp(member1FullName, member2FullName) < 0) {
+  if (strlen(member1FullName) == 0 && strlen(member2FullName) == 0) {
+
+    printf("No member names available.\n");
+  } else if (strlen(member1FullName) == 0) {
+
+    printf("1. %s\n", member2FullName);
+  } else if (strlen(member2FullName) == 0) {
+
+    printf("1. %s\n", member1FullName);
+  } else if (comparisonResult < 0) {
 
     printf("1. %s\n", member1FullName);
     printf("2. %s\n", member2FullName);
@@ -106,7 +127,8 @@ void buildFullName(char *firstName, char *lastName, char *fullName) {
 }
 
 void calculateLetterCount(char *fullName, int *letterCount) {
-  *letterCount = strlen(fullName);
+
+    *letterCount = strlen(fullName);
 }
 
 void compareNames(char *member1FullName, char *member2FullName,
