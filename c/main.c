@@ -26,8 +26,8 @@ void displayMenu() {
   printf("2. Display Student\n");
   printf("3. Enter Grades\n");
   printf("4. Save Student Record\n");
-  printf("6. Display Statistics\n\n");
-  printf("5. Exit\n");
+  printf("5. Display Statistics\n");
+  printf("6. Exit\n\n");
 }
 
 void displayStanding(float currentGPA);
@@ -271,7 +271,7 @@ int main() {
   int studentExists = 0;
   int gradesExist = 0;
 
-  while (menuChoice != 5) {
+  while (menuChoice != 6) {
 
     displayHeader();
 
@@ -320,13 +320,13 @@ int main() {
 
       break;
 
-    case 6:
+    case 5:
 
       displayStatistics();
 
       break;
 
-    case 5:
+    case 6:
       printf("\nThank you for using the\n");
       printf("Student Information Management System.\n");
       printf("Program terminated successfully.\n");
