@@ -1,6 +1,6 @@
-1234567
+1001
 Alice Johnson
-3.84
+3.80
 Honors
 95
 88
