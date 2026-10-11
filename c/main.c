@@ -1,9 +1,24 @@
 #include <stdio.h>
 
+int totalStudentsEntered = 0;
+int totalHonorsStudents = 0;
+float totalGPA = 0.0;
+
+void updateStatistics(float currentGPA) {
+
+  totalStudentsEntered++;
+
+  totalGPA += currentGPA;
+
+  if (currentGPA >= 3.50) {
+    totalHonorsStudents++;
+  }
+}
+
 void displayHeader() {
   printf("\n-------------------------------------\n");
   printf("Student Information Management System\n");
-  printf("Version 6.0\n");
+  printf("Version 7.0\n");
   printf("-------------------------------------\n\n");
 }
 void displayMenu() {
@@ -11,10 +26,12 @@ void displayMenu() {
   printf("2. Display Student\n");
   printf("3. Enter Grades\n");
   printf("4. Save Student Record\n");
-  printf("5. Exit\n\n");
+  printf("6. Display Statistics\n\n");
+  printf("5. Exit\n");
 }
 
 void displayStanding(float currentGPA);
+void displayStatistics();
 
 void addStudent(int *studentID, char studentName[], float *currentGPA,
                 int *studentExists) {
@@ -39,6 +56,7 @@ void addStudent(int *studentID, char studentName[], float *currentGPA,
   }
 
   *studentExists = 1;
+  updateStatistics(*currentGPA);
 
   printf("\nStudent successfully added.\n");
 }
@@ -220,6 +238,25 @@ void displayStanding(float currentGPA) {
     printf("Academic Standing   : Academic Suspension\n\n");
 }
 
+void displayStatistics() {
+
+  float averageGPA = 0.0;
+
+  if (totalStudentsEntered > 0) {
+    averageGPA = totalGPA / totalStudentsEntered;
+  }
+
+  printf("\n-------------------------------------\n");
+  printf("SIMS Statistics\n");
+  printf("-------------------------------------\n\n");
+
+  printf("Total Students Entered : %d\n", totalStudentsEntered);
+
+  printf("Average GPA            : %.2f\n", averageGPA);
+
+  printf("Honor Students         : %d\n", totalHonorsStudents);
+}
+
 int main() {
 
   int studentID;
@@ -248,7 +285,7 @@ int main() {
 
       printf("\nERROR\n");
       printf("Invalid menu selection.\n");
-      printf("Please choose an option between 1 and 5.\n");
+      printf("Please choose an option between 1 and 6.\n");
 
       continue;
     }
@@ -283,6 +320,12 @@ int main() {
 
       break;
 
+    case 6:
+
+      displayStatistics();
+
+      break;
+
     case 5:
       printf("\nThank you for using the\n");
       printf("Student Information Management System.\n");
@@ -292,7 +335,7 @@ int main() {
     default:
       printf("\nERROR\n");
       printf("Invalid menu selection.\n");
-      printf("Please choose an option between 1 and 5.\n");
+      printf("Please choose an option between 1 and 6.\n");
     }
   }
 
