@@ -7,5 +7,9 @@ name = "CCR18"
 version = "0.1.0"
 
 [[package]]
+name = "CCR19"
+version = "0.1.0"
+
+[[package]]
 name = "equipment_rental"
 version = "0.1.0"
