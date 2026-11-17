@@ -1,0 +1,8 @@
+USF Bookstore
+Book1: $12.50
+Items: 1
+Subtotal: $12.50
+Discount: $0.00
+Sales Tax: $0.88
+Final Total: $13.38
+Most Expensive: Book1 ($12.50)
