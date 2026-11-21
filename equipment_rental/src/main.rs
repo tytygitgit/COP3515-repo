@@ -1,60 +1,68 @@
+use std::fs;
+
 fn main() {
-    // Equipment Record #1
-    let equipment_id_1 = 1001;
-    let equipment_name_1 = "Laptop";
-    let category_1 = "Computer";
-    let available_1 = true;
-
-    // Equipment Record #2
-    let equipment_id_2 = 1002;
-    let equipment_name_2 = "Camera";
-    let category_2 = "Photography";
-    let available_2 = true;
-
-    // Equipment Record #3
-    let equipment_id_3 = 1003;
-    let equipment_name_3 = "Projector";
-    let category_3 = "Classroom";
-    let available_3 = false;
-
     println!("------------------------------------------------");
     println!("University Equipment Rental System");
-    println!("Version 1.0");
+    println!("Version 2.0");
     println!("------------------------------------------------");
-
     println!("\nEquipment Inventory\n");
 
-    println!("ID:          {}", equipment_id_1);
-    println!("Name:        {}", equipment_name_1);
-    println!("Category:    {}", category_1);
+    let file_contents = match fs::read_to_string("equipment.txt") {
+        Ok(contents) => contents,
+        Err(_) => {
+            println!("ERROR");
+            println!("Unable to open equipment.txt");
+            println!("Please verify that the file exists.");
+            return;
+        }
+    };
 
-    if available_1 {
-        println!("Available:   Yes");
-    } else {
-        println!("Available:   No");
-    }
+    for line in file_contents.lines() {
+        if line.trim().is_empty() {
+            continue;
+        }
 
-    println!();
+        let parts: Vec<&str> = line.split(',').collect();
 
-    println!("ID:          {}", equipment_id_2);
-    println!("Name:        {}", equipment_name_2);
-    println!("Category:    {}", category_2);
+        if parts.len() != 4 {
+            println!("ERROR: Invalid equipment record\n");
+            continue;
+        }
 
-    if available_2 {
-        println!("Available:   Yes");
-    } else {
-        println!("Available:   No");
-    }
+        let equipment_id = parts[0].trim();
+        let equipment_name = parts[1].trim();
+        let category = parts[2].trim();
+        let available = parts[3].trim();
 
-    println!();
+        if equipment_id.parse::<u32>().is_err() {
+            println!("ERROR: Invalid equipment record\n");
+            continue;
+        }
 
-    println!("ID:          {}", equipment_id_3);
-    println!("Name:        {}", equipment_name_3);
-    println!("Category:    {}", category_3);
+        if equipment_name.is_empty() || category.is_empty() {
+            println!("ERROR: Invalid equipment record\n");
+            continue;
+        }
 
-    if available_3 {
-        println!("Available:   Yes");
-    } else {
-        println!("Available:   No");
+        let available_bool = match available {
+            "true" => true,
+            "false" => false,
+            _ => {
+                println!("ERROR: Invalid equipment record\n");
+                continue;
+            }
+        };
+
+        println!("ID:          {}", equipment_id);
+        println!("Name:        {}", equipment_name);
+        println!("Category:    {}", category);
+
+        if available_bool {
+            println!("Available:   Yes");
+        } else {
+            println!("Available:   No");
+        }
+
+        println!();
     }
 }
